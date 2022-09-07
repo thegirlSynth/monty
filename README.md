@@ -12,3 +12,10 @@ There can be any number of spaces before or after the opcode and its argument:
 ### The monty program
 * Usage: `monty file`
   * where `file` is the path to the file containing Monty byte code
+
+
+### Compilation & Output
+The code will be compiled this way:
+```
+$ gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty
+```
