@@ -9,7 +9,7 @@
 int main(int argc, char **argv)
 {
 	unsigned int line_number = 1;
-	char *buffer;
+	char *buffer, **args = NULL;
 	FILE *filedes;
 
 	/* Ensuring the correct number of arguments */
@@ -33,18 +33,24 @@ int main(int argc, char **argv)
 	if (filedes == NULL)
 	{
 		fprintf(stderr,"Error: Can't open file %s\n", argv[1]);
+		free(buffer);
 		exit(EXIT_FAILURE);
 	}
 
 	/* Reading lines from the file */
 	while((fgets(buffer, 1024, filedes)) != NULL)
 	{
-		buffer = strip_begin_spaces(buffer);
-		monty_ops(buffer, line_number);
+		if (line_number != 0)
+			free(args);
+		args = tokenize(buffer);
+		if (args != NULL)
+			monty_ops(args, line_number);
 		line_number++;
 	}
 
 	fclose(filedes);
 	free(buffer);
+	if(args != NULL)
+		free(args);
 	return (0);
 }

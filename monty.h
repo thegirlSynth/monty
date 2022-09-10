@@ -41,8 +41,8 @@ typedef struct instruction_s
 
 
 /* Prototypes */
-void monty_ops(char *buffer, unsigned int line_number);
-char *strip_begin_spaces(char *buffer);
+char **tokenize(char *buffer);
+void monty_ops(char **args, unsigned int line_number);
 int check_func(char *op_code);
 void op_push(stack_t **stack, unsigned int number);
 void op_pall(stack_t **stack, unsigned int number);

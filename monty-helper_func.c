@@ -1,15 +1,38 @@
 #include "monty.h"
 
+/**
+ * tokenize - split lines into words.
+ * @buffer: the line of text to be split.
+ * Return: an array of words.
+ */
 
-char *strip_begin_spaces(char *buffer)
+char **tokenize(char *buffer)
 {
-	unsigned int index;
+	int index = 0;
+	char **args, *token;
 
-	while(*buffer == ' ')
+	args = malloc(sizeof(char *) * strlen(buffer));
+	if (args == NULL)
+		return (NULL);
+
+	if(strlen(buffer) == 1)
 	{
-		for (index = 0; index <= strlen(buffer); index++)
-			buffer[index] = buffer[index + 1];
+		free(args);
+		return (NULL);
 	}
 
-	return (buffer);
+	token = strtok(buffer, " ");
+
+	while (token != NULL)
+	{
+		args[index] = token;
+		index++;
+		token = strtok(NULL, " ");
+	}
+
+	args[index] = NULL;
+
+	return (args);
 }
+
+

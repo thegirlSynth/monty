@@ -6,23 +6,16 @@
  * @buffer: line of text from a monty file.
  */
 
-void monty_ops(char *buffer, unsigned int line_number)
+void monty_ops(char **args, unsigned int line_number)
 {
-	char op_code[4];
-	int index, op_func;
+	int op_func;
 
 
-	if(strlen(buffer) > 3)
-	{
-		for (index = 0; index <= 3; index++)
-			op_code[index] = buffer[index];
-
-		fprintf(stdout, "%s\n", op_code);
-		fprintf(stdout, "%ld\n", strlen(op_code));
-		op_func = check_func(op_code);
-		if (op_func == 0)
-			return;
-	}
+	fprintf(stdout, "%s\n", args[0]);
+	fprintf(stdout, "%ld\n", strlen(args[0]));
+	op_func = check_func(args[0]);
+	if (op_func == 0)
+		return;
 
 	fprintf(stderr, "L%u: unknown instruction <opcode>\n", line_number);
 
