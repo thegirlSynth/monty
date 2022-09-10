@@ -8,6 +8,7 @@
 
 int main(int argc, char **argv)
 {
+	unsigned int line_number = 1;
 	char *buffer;
 	FILE *filedes;
 
@@ -38,7 +39,9 @@ int main(int argc, char **argv)
 	/* Reading lines from the file */
 	while((fgets(buffer, 1024, filedes)) != NULL)
 	{
-		fprintf(stdout,"%s",buffer);
+		buffer = strip_begin_spaces(buffer);
+		monty_ops(buffer, line_number);
+		line_number++;
 	}
 
 	fclose(filedes);
