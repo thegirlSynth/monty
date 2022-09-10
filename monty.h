@@ -3,7 +3,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
+/* Global variables */
+extern unsigned int line_number;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -35,5 +38,13 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+
+/* Prototypes */
+void monty_ops(char *buffer, unsigned int line_number);
+char *strip_begin_spaces(char *buffer);
+int check_func(char *op_code);
+void op_push(stack_t **stack, unsigned int number);
+void op_pall(stack_t **stack, unsigned int number);
 
 #endif
