@@ -35,6 +35,7 @@ int check_func(char **args)
 	instruction_t ops[] = {
 		{"push", op_push},
 		{"pall", op_pall},
+		{"nop", NULL},
 		{NULL, NULL}
 	};
 
@@ -43,7 +44,8 @@ int check_func(char **args)
 	{
 		if (strcmp(ops[index].opcode, args[0]) == 0)
 		{
-			ops[index].f(&top_stack, line_number);
+			if (index != 2)
+				ops[index].f(&top_stack, line_number);
 			return (0);
 		}
 		index++;
