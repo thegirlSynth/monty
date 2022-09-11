@@ -58,9 +58,12 @@ void op_pall(stack_t **stack, __attribute__((unused))unsigned int number)
 	if (*stack == NULL)
 		return;
 
+	while(current->next != NULL)
+		current = current->next;
+
 	while(current != NULL)
 	{
 		printf("%d\n", current->n);
-		current = current->next;
+		current = current->prev;
 	}
 }
