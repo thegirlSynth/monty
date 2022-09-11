@@ -36,6 +36,7 @@ int check_func(char **args)
 		{"push", op_push},
 		{"pall", op_pall},
 		{"nop", NULL},
+		{"pop", op_pop},
 		{NULL, NULL}
 	};
 
