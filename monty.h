@@ -41,9 +41,13 @@ typedef struct instruction_s
 
 
 /* Global variables */
+extern FILE *filedes;
 extern unsigned int line_number;
+extern char *buffer;
 extern char **args;
 extern stack_t *top_stack;
+/* Don't be like me; I think I externed way too many variables. ;) */
+
 
 /* Prototypes */
 char **tokenize(char *buffer);
@@ -51,6 +55,6 @@ void monty_ops(char **args);
 int check_func(char **args);
 void op_push(stack_t **stack, unsigned int number);
 void op_pall(stack_t **stack, unsigned int number);
-void free_stack(void);
+void free_all(void);
 
 #endif

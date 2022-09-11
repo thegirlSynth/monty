@@ -17,7 +17,8 @@ void op_push(stack_t **stack, unsigned int number)
 
 	if (!args[1] || value == 0)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", number);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
 	
@@ -41,7 +42,6 @@ void op_push(stack_t **stack, unsigned int number)
 	new_node->prev = last_node;
 	last_node->next = new_node;
 
-	printf("%lu\n%u%u\n", sizeof(stack), new_node->n, number);
 }
 
 
@@ -51,7 +51,16 @@ void op_push(stack_t **stack, unsigned int number)
  * @number: the line number
  */
 
-void op_pall(stack_t **stack, unsigned int number)
+void op_pall(stack_t **stack, __attribute__((unused))unsigned int number)
 {
-	printf("%lu%u\n", sizeof(stack), number);
+	stack_t *current = *stack;
+
+	if (*stack == NULL)
+		return;
+
+	while(current != NULL)
+	{
+		printf("%d\n", current->n);
+		current = current->next;
+	}
 }

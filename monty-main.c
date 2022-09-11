@@ -3,7 +3,9 @@
 
 unsigned int line_number = 1;
 stack_t *top_stack = NULL;
+char *buffer;
 char **args = NULL;
+FILE *filedes;
 
 /**
  * main - this is the entry point of the monty intepreter.
@@ -13,10 +15,6 @@ char **args = NULL;
 
 int main(int argc, char **argv)
 {
-	char *buffer;
-	FILE *filedes;
-
-
 	/* Ensuring the correct number of arguments */
 	if (argc != 2)
 	{
@@ -53,12 +51,7 @@ int main(int argc, char **argv)
 		line_number++;
 	}
 
-	fclose(filedes);
-	free(buffer);
-	if(args != NULL)
-	{
-		free(args);
-		free_stack();
-	}
+	free_all();
+
 	return (0);
 }
