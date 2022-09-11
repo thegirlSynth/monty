@@ -1,19 +1,18 @@
 #include "monty.h"
 
+unsigned int line_number;
+stack_t *top_stack;
 
 /**
  * monty_ops - executes monty operations.
  * @buffer: line of text from a monty file.
  */
 
-void monty_ops(char **args, unsigned int line_number)
+void monty_ops(char **args)
 {
 	int op_func;
 
-
-	fprintf(stdout, "%s\n", args[0]);
-	fprintf(stdout, "%ld\n", strlen(args[0]));
-	op_func = check_func(args[0]);
+	op_func = check_func(args);
 	if (op_func == 0)
 		return;
 
@@ -28,25 +27,26 @@ void monty_ops(char **args, unsigned int line_number)
  * Return: 0, on success
  */
 
-int check_func(char *op_code)
+int check_func(char **args)
 {
+	int index = 0;
 	instruction_t ops[] = {
 		{"push", op_push},
 		{"pall", op_pall},
 		{NULL, NULL}
 	};
-	int index = 0;
+
 
 	while(ops[index].opcode != NULL)
 	{
-		if (strcmp(ops[index].opcode, op_code) == 0)
+		if (strcmp(ops[index].opcode, args[0]) == 0)
 		{
-			printf("checkfunc successful!\n");
+			ops[index].f(&top_stack, line_number);
 			return (0);
 		}
 		index++;
 	}
 
+
 	return (-1);
 }
-

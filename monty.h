@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 
-/* Global variables */
-extern unsigned int line_number;
+/* Data Structures */
+
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -40,11 +40,17 @@ typedef struct instruction_s
 } instruction_t;
 
 
+/* Global variables */
+extern unsigned int line_number;
+extern char **args;
+extern stack_t *top_stack;
+
 /* Prototypes */
 char **tokenize(char *buffer);
-void monty_ops(char **args, unsigned int line_number);
-int check_func(char *op_code);
+void monty_ops(char **args);
+int check_func(char **args);
 void op_push(stack_t **stack, unsigned int number);
 void op_pall(stack_t **stack, unsigned int number);
+void free_stack(void);
 
 #endif

@@ -1,5 +1,10 @@
 #include "monty.h"
 
+
+unsigned int line_number = 1;
+stack_t *top_stack = NULL;
+char **args = NULL;
+
 /**
  * main - this is the entry point of the monty intepreter.
  * @argc: the number of arguments to the program
@@ -8,9 +13,9 @@
 
 int main(int argc, char **argv)
 {
-	unsigned int line_number = 1;
-	char *buffer, **args = NULL;
+	char *buffer;
 	FILE *filedes;
+
 
 	/* Ensuring the correct number of arguments */
 	if (argc != 2)
@@ -40,17 +45,20 @@ int main(int argc, char **argv)
 	/* Reading lines from the file */
 	while((fgets(buffer, 1024, filedes)) != NULL)
 	{
-		if (line_number != 0)
+		if (line_number != 1)
 			free(args);
 		args = tokenize(buffer);
 		if (args != NULL)
-			monty_ops(args, line_number);
+			monty_ops(args);
 		line_number++;
 	}
 
 	fclose(filedes);
 	free(buffer);
 	if(args != NULL)
+	{
 		free(args);
+		free_stack();
+	}
 	return (0);
 }

@@ -1,5 +1,6 @@
 #include "monty.h"
 
+stack_t *top_stack;
 /**
  * tokenize - split lines into words.
  * @buffer: the line of text to be split.
@@ -36,3 +37,14 @@ char **tokenize(char *buffer)
 }
 
 
+void free_stack(void)
+{
+	stack_t *current;
+
+	while (top_stack != NULL)
+	{
+		current = top_stack;
+		top_stack = top_stack->next;
+		free(current);
+	}
+}
