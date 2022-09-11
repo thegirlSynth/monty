@@ -24,13 +24,13 @@ char **tokenize(char *buffer)
 		return (NULL);
 	}
 
-	token = strtok(buffer, " ");
+	token = strtok(buffer, " $\n");
 
 	while (token != NULL)
 	{
 		args[index] = token;
 		index++;
-		token = strtok(NULL, " ");
+		token = strtok(NULL, " $\n");
 	}
 
 	args[index] = NULL;
