@@ -50,6 +50,7 @@ extern stack_t *top_stack;
 
 
 /* Prototypes */
+int _atoi(char *s);
 char **tokenize(char *buffer);
 void monty_ops(char **args);
 int check_func(char **args);

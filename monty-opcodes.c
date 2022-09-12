@@ -13,12 +13,15 @@ void op_push(stack_t **stack, unsigned int number)
 {
 	stack_t *new_node, *last_node = *stack;
 	int value = 0;
-	
-	
-	if (args[1])
-		value = atoi(args[1]);
 
-	if (value == 0)
+	if (args[1])
+	{
+		if (strcmp(args[1], "-0") == 0)
+			*args[1] = '0';
+		value = _atoi(args[1]);
+	}
+
+	if (value == 0 && *args[1] != '0')
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", number);
 		free_all();
