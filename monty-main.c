@@ -11,6 +11,7 @@ FILE *filedes;
  * main - this is the entry point of the monty intepreter.
  * @argc: the number of arguments to the program
  * @argv: an array of arguments to the program.
+ *Return: 0 on success
  */
 
 int main(int argc, char **argv)
@@ -35,13 +36,13 @@ int main(int argc, char **argv)
 	filedes = fopen(argv[1], "r");
 	if (filedes == NULL)
 	{
-		fprintf(stderr,"Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		free(buffer);
 		exit(EXIT_FAILURE);
 	}
 
 	/* Reading lines from the file */
-	while((fgets(buffer, 1024, filedes)) != NULL)
+	while ((fgets(buffer, 1024, filedes)) != NULL)
 	{
 		if (line_number != 1)
 			free(args);

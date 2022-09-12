@@ -12,25 +12,28 @@ stack_t *top_stack;
 char **tokenize(char *buffer)
 {
 	int index = 0;
+	unsigned int len = strlen(buffer);
 	char **args, *token;
 
 	args = malloc(sizeof(char *) * strlen(buffer));
 	if (args == NULL)
 		return (NULL);
 
-	if(strlen(buffer) == 1)
+	buffer[len - 1] = '\0';
+
+	if (len == 1)
 	{
 		free(args);
 		return (NULL);
 	}
 
-	token = strtok(buffer, " $\n");
+	token = strtok(buffer, " $");
 
 	while (token != NULL)
 	{
 		args[index] = token;
 		index++;
-		token = strtok(NULL, " $\n");
+		token = strtok(NULL, " $");
 	}
 
 	args[index] = NULL;
@@ -39,13 +42,17 @@ char **tokenize(char *buffer)
 }
 
 
+/**
+ * free_all - frees malloced addresses
+ */
+
 void free_all(void)
 {
 	stack_t *current;
 
 	fclose(filedes);
 	free(buffer);
-	if(args != NULL)
+	if (args != NULL)
 	{
 		free(args);
 

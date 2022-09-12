@@ -5,7 +5,7 @@ stack_t *top_stack;
 
 /**
  * monty_ops - executes monty operations.
- * @buffer: line of text from a monty file.
+ * @args: array of arguements from a monty file.
  */
 
 void monty_ops(char **args)
@@ -25,7 +25,7 @@ void monty_ops(char **args)
 
 /**
  * check_func - selects the correct opcode to perform
- * @opcode: the string to be compared
+ * @args: arrays of strings
  * Return: 0, on success
  */
 
@@ -41,7 +41,7 @@ int check_func(char **args)
 	};
 
 
-	while(ops[index].opcode != NULL)
+	while (ops[index].opcode != NULL)
 	{
 		if (strcmp(ops[index].opcode, args[0]) == 0)
 		{

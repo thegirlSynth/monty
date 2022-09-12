@@ -12,16 +12,19 @@ char **args;
 void op_push(stack_t **stack, unsigned int number)
 {
 	stack_t *new_node, *last_node = *stack;
-	int value = atoi(args[1]);
+	int value = 0;
+	
+	
+	if (args[1])
+		value = atoi(args[1]);
 
-
-	if (!args[1] || value == 0)
+	if (value == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	
+
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 		return;
@@ -58,10 +61,10 @@ void op_pall(stack_t **stack, __attribute__((unused))unsigned int number)
 	if (*stack == NULL)
 		return;
 
-	while(current->next != NULL)
+	while (current->next != NULL)
 		current = current->next;
 
-	while(current != NULL)
+	while (current != NULL)
 	{
 		printf("%d\n", current->n);
 		current = current->prev;
@@ -85,8 +88,8 @@ void op_pop(stack_t **stack, unsigned int number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	
-	while(current->next != NULL)
+
+	while (current->next != NULL)
 		current = current->next;
 
 	last_node = current->prev;
