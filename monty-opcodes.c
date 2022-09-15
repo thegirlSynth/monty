@@ -74,6 +74,28 @@ void op_pall(stack_t **stack, __attribute__((unused))unsigned int number)
 	}
 }
 
+/**
+ * op_pint - prints the value at the top of the stack, followed by a new line.
+ * @stack: a doubly linked list
+ * @number: the line number
+ */
+
+void op_pint(stack_t **stack, unsigned int number)
+{
+	stack_t *current = *stack;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pint an empty stack\n", number);
+		free_all();
+		exit(EXIT_FAILURE);
+	}
+
+	while (current->next != NULL)
+		current = current->next;
+
+	printf("%d\n", current->n);
+}
 
 /**
  * op_pop - removes the top element in a stack

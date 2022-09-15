@@ -56,6 +56,7 @@ void monty_ops(char **args);
 int check_func(char **args);
 void op_push(stack_t **stack, unsigned int number);
 void op_pall(stack_t **stack, unsigned int number);
+void op_pint(stack_t **stack, unsigned int number);
 void op_pop(stack_t **stack, unsigned int number);
 void free_all(void);
 
