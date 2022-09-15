@@ -86,7 +86,7 @@ void op_pint(stack_t **stack, unsigned int number)
 
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%u: can't pint an empty stack\n", number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
