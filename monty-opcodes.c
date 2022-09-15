@@ -95,6 +95,13 @@ void op_pop(stack_t **stack, unsigned int number)
 	while (current->next != NULL)
 		current = current->next;
 
+	if (current->prev == NULL)
+	{
+		*stack = NULL;
+		free(current);
+		return;
+	}
+
 	last_node = current->prev;
 	last_node->next = NULL;
 
