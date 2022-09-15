@@ -27,7 +27,7 @@ char **tokenize(char *buffer)
 
 	buffer[len - 1] = '\0';
 
-	token = strtok(buffer, " $");
+	token = strtok(buffer, " \n$");
 
 	while (token != NULL)
 	{
@@ -95,14 +95,12 @@ void free_all(void)
 	fclose(filedes);
 	free(buffer);
 	if (args != NULL)
-	{
 		free(args);
 
-		while (top_stack != NULL)
-		{
-			current = top_stack;
-			top_stack = top_stack->next;
-			free(current);
-		}
+	while (top_stack != NULL)
+	{
+		current = top_stack;
+		top_stack = top_stack->next;
+		free(current);
 	}
 }

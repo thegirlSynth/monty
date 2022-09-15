@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 		if (line_number != 1)
 			free(args);
 		args = tokenize(buffer);
-		if (args != NULL)
+		if (args != NULL && args[0] != NULL)
 			monty_ops(args);
 		line_number++;
 	}

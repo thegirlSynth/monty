@@ -16,7 +16,7 @@ void monty_ops(char **args)
 	if (op_func == 0)
 		return;
 
-	fprintf(stderr, "L%u: unknown instruction <opcode>\n", line_number);
+	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, args[0]);
 	free_all();
 	exit(EXIT_FAILURE);
 

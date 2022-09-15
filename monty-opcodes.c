@@ -21,7 +21,7 @@ void op_push(stack_t **stack, unsigned int number)
 		value = _atoi(args[1]);
 	}
 
-	if (value == 0 && *args[1] != '0')
+	if (args[1] == NULL || (value == 0 && *args[1] != '0'))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", number);
 		free_all();
