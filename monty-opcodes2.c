@@ -31,5 +31,9 @@ void op_swap(stack_t **stack, unsigned int number)
 	last_node->next = NULL;
 	if (last_node->prev != NULL)
 		last_node->prev->next = swap;
+	else
+		*stack = swap;
+
 	last_node->prev = swap;
+
 }
