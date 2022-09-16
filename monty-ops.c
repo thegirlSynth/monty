@@ -40,6 +40,7 @@ int check_func(char **args)
 		{"pop", op_pop},
 		{"swap", op_swap},
 		{"add", op_add},
+		{"sub", op_sub},
 		{NULL, NULL}
 	};
 
