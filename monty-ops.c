@@ -39,8 +39,11 @@ int check_func(char **args)
 		{"pint", op_pint},
 		{"pop", op_pop},
 		{"swap", op_swap},
-		{"add", op_add},
-		{"sub", op_sub},
+		{"add", op_calc},
+		{"sub", op_calc},
+		{"mul", op_calc},
+		{"div", op_calc},
+		{"mod", op_calc},
 		{NULL, NULL}
 	};
 

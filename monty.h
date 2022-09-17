@@ -59,8 +59,8 @@ void op_pall(stack_t **stack, unsigned int number);
 void op_pint(stack_t **stack, unsigned int number);
 void op_pop(stack_t **stack, unsigned int number);
 void op_swap(stack_t **stack, unsigned int number);
-void op_add(stack_t **stack, unsigned int number);
-void op_sub(stack_t **stack, unsigned int number);
+void op_calc(stack_t **stack, unsigned int number);
+int do_calc(int a, int b, unsigned int number);
 void free_all(void);
 
 #endif

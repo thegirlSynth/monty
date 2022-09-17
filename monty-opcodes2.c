@@ -1,5 +1,6 @@
 #include "monty.h"
 
+char **args;
 
 /**
  * op_swap - swaps the top two elements of the stack
@@ -38,21 +39,22 @@ void op_swap(stack_t **stack, unsigned int number)
 
 
 /**
- * op_add - adds the top two elements of the stack, stores the value
- * in the second top element, and pops the top element.
+ * op_calc - performs basic math operations on the second top element
+ *		and the top element of the stack respectively, and stores the
+ *		value in the second top element, and pops the top element.
  *
  * @stack: a doubly linked list
  * @number: the line number
  */
 
-void op_add(stack_t **stack, unsigned int number)
+void op_calc(stack_t **stack, unsigned int number)
 {
-	int sum;
-	stack_t *last_node = *stack, *add_node;
+	int value;
+	stack_t *last_node = *stack, *op_node;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
-		fprintf(stderr, "L%u: can't add, stack too short\n", number);
+		fprintf(stderr, "L%u: can't %s, stack too short\n", number, args[0]);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
@@ -60,44 +62,47 @@ void op_add(stack_t **stack, unsigned int number)
 	while (last_node->next != NULL)
 		last_node = last_node->next;
 
-	add_node = last_node->prev;
+	op_node = last_node->prev;
 
-	/* Adding the last two elements and storing in the second last element*/
-	sum = add_node->n + last_node->n;
-	add_node->n = sum;
+	/* Math operations in Progress....haha */
+	value = do_calc(op_node->n, last_node->n, number);
+
+	/* Reassigning and Popping */
+	op_node->n = value;
 	op_pop(stack, number);
 
 }
 
 
 /**
- * op_sub - subtracts the top element from the second top element of the stack,
- * stores the value in the second top element, and pops the top element.
+ * do_calc - performs basic math operations on two numbers
  *
- * @stack: a doubly linked list
+ * @a: the first number
+ * @b: the second number
  * @number: the line number
+ * Return: the new value
  */
 
-void op_sub(stack_t **stack, unsigned int number)
+int do_calc(int a, int b, unsigned int number)
 {
-	int diff;
-	stack_t *last_node = *stack, *sub_node;
+	if (strcmp(args[0], "add") == 0)
+		return (a + b);
 
-	if (*stack == NULL || (*stack)->next == NULL)
+	if (strcmp(args[0], "sub") == 0)
+		return (a - b);
+
+	if (strcmp(args[0], "mul") == 0)
+		return (a * b);
+
+	if (b == 0)
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", number);
+		fprintf(stderr, "L%u: division by zero\n", number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
 
-	while (last_node->next != NULL)
-		last_node = last_node->next;
+	if (strcmp(args[0], "div") == 0)
+		return (a / b);
 
-	sub_node = last_node->prev;
-
-	/* Subtracting in Progress*/
-	diff = sub_node->n - last_node->n;
-	sub_node->n = diff;
-	op_pop(stack, number);
-
+	return (a % b);
 }
