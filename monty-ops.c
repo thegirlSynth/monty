@@ -12,6 +12,10 @@ void monty_ops(char **args)
 {
 	int op_func;
 
+	/* Handling Comments */
+	if (**args == '#')
+		return;
+
 	op_func = check_func(args);
 	if (op_func == 0)
 		return;

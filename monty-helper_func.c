@@ -20,7 +20,7 @@ char **tokenize(char *buffer)
 		return (NULL);
 
 	/* Handling a blank line or a commented line */
-	if (len == 1 || buffer[0] == '#')
+	if (len == 1)
 	{
 		free(args);
 		return (NULL);
