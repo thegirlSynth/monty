@@ -19,7 +19,8 @@ char **tokenize(char *buffer)
 	if (args == NULL)
 		return (NULL);
 
-	if (len == 1)
+	/* Handling a blank line or a commented line */
+	if (len == 1 || buffer[0] == '#')
 	{
 		free(args);
 		return (NULL);
