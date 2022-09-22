@@ -36,7 +36,8 @@ void op_pchar(stack_t **stack, unsigned int number)
 
 
 /**
- * op_pstr - prints the string starting at the top of the stack, followed by a new line.
+ * op_pstr - prints the string starting at the top of the stack,
+ * followed by a new line.
  * @stack: a doubly linked list
  * @number: the line number
  */
@@ -104,6 +105,23 @@ void op_rotl(stack_t **stack, __attribute__((unused))unsigned int number)
 
 void op_rotr(stack_t **stack, __attribute__((unused))unsigned int number)
 {
+	stack_t *current = *stack;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+
+	while (current->next != NULL)
+		current = current->next;
+
+	current->next = *stack;
+	(*stack)->prev = current;
+	*stack = (*stack)->next;
+	(*stack)->prev->next = NULL;
+	(*stack)->prev = NULL;
+}
+
+
+/*{
 	stack_t *current = *stack, *lastnode;
 
 	if (*stack == NULL || (*stack)->next == NULL)
@@ -124,4 +142,4 @@ void op_rotr(stack_t **stack, __attribute__((unused))unsigned int number)
 		current = lastnode;
 		lastnode = lastnode->next;
 	}
-}
+}*/
