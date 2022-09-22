@@ -1,8 +1,6 @@
 #include "monty.h"
 
 
-
-
 /**
  * op_pchar - prints the char at the top of the stack, followed by a new line.
  * @stack: a doubly linked list
@@ -36,3 +34,36 @@ void op_pchar(stack_t **stack, unsigned int number)
 	putchar('\n');
 }
 
+
+/**
+ * op_pstr - prints the string starting at the top of the stack, followed by a new line.
+ * @stack: a doubly linked list
+ * @number: the line number
+ */
+
+void op_pstr(stack_t **stack, __attribute__((unused))unsigned int number)
+{
+	stack_t *current = *stack;
+	int num;
+
+	if (*stack == NULL)
+	{
+		printf("\n");
+		return;
+	}
+
+	while (current->next != NULL)
+		current = current->next;
+
+	while (current != NULL)
+	{
+		num = current->n;
+
+		if (num < 32 || num >= 127 || num == 0)
+			break;
+
+		putchar(num);
+		current = current->prev;
+	}
+	putchar('\n');
+}

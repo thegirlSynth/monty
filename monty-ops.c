@@ -49,6 +49,7 @@ int check_func(char **args)
 		{"div", op_calc},
 		{"mod", op_calc},
 		{"pchar", op_pchar},
+		{"pstr", op_pstr},
 		{NULL, NULL}
 	};
 
