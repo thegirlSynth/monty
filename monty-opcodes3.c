@@ -93,3 +93,35 @@ void op_rotl(stack_t **stack, __attribute__((unused))unsigned int number)
 	(*stack)->prev = current;
 	*stack = current;
 }
+
+
+/**
+ * op_rotr - rotates the stack to the bottom
+ *	the last element becomes the top one
+ * @stack: a doubly linked list
+ * @number: the line number
+ */
+
+void op_rotr(stack_t **stack, __attribute__((unused))unsigned int number)
+{
+	stack_t *current = *stack, *lastnode;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+
+	while (current->next != NULL)
+		current = current->next;
+
+	lastnode = current->prev;
+	current->next = lastnode;
+	current->prev = NULL;
+	*stack = current;
+
+	while (lastnode != NULL)
+	{
+		lastnode->next = lastnode->prev;
+		lastnode->prev = current;
+		current = lastnode;
+		lastnode = lastnode->next;
+	}
+}
