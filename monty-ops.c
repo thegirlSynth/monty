@@ -50,6 +50,7 @@ int check_func(char **args)
 		{"mod", op_calc},
 		{"pchar", op_pchar},
 		{"pstr", op_pstr},
+		{"rotl", op_rotl},
 		{NULL, NULL}
 	};
 
