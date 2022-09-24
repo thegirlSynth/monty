@@ -121,25 +121,3 @@ void op_rotr(stack_t **stack, __attribute__((unused))unsigned int number)
 }
 
 
-/*{
-	stack_t *current = *stack, *lastnode;
-
-	if (*stack == NULL || (*stack)->next == NULL)
-		return;
-
-	while (current->next != NULL)
-		current = current->next;
-
-	lastnode = current->prev;
-	current->next = lastnode;
-	current->prev = NULL;
-	*stack = current;
-
-	while (lastnode != NULL)
-	{
-		lastnode->next = lastnode->prev;
-		lastnode->prev = current;
-		current = lastnode;
-		lastnode = lastnode->next;
-	}
-}*/

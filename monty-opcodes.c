@@ -1,6 +1,7 @@
 #include "monty.h"
 
 char **args;
+int mode;
 
 /**
  * op_push - pushes an element to the top of the stack
@@ -20,7 +21,6 @@ void op_push(stack_t **stack, unsigned int number)
 			*args[1] = '0';
 		value = _atoi(args[1]);
 	}
-
 	if (args[1] == NULL || (value == 0 && *args[1] != '0'))
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", number);
@@ -31,23 +31,27 @@ void op_push(stack_t **stack, unsigned int number)
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
 		return;
-
 	new_node->n = value;
 	new_node->next = NULL;
 
-	if (*stack == NULL)
+	if (*stack == NULL) /* Pushing depending on stack or queue mode */
 	{
 		*stack = new_node;
 		new_node->prev = NULL;
 		return;
 	}
-
-	while (last_node->next != NULL)
-		last_node = last_node->next;
-
-	new_node->prev = last_node;
-	last_node->next = new_node;
-
+	if (mode == 1)
+	{
+		while (last_node->next != NULL)
+			last_node = last_node->next;
+		new_node->prev = last_node;
+		last_node->next = new_node;
+		return;
+	}
+	new_node->next = last_node;
+	new_node->prev = NULL;
+	last_node->prev = new_node;
+	*stack = new_node;
 }
 
 

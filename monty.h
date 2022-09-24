@@ -46,6 +46,8 @@ extern unsigned int line_number;
 extern char *buffer;
 extern char **args;
 extern stack_t *top_stack;
+extern int mode;
+
 /* Don't be like me; I think I externed way too many variables. ;) */
 
 
@@ -65,6 +67,9 @@ void op_pchar(stack_t **stack, unsigned int number);
 void op_pstr(stack_t **stack, unsigned int number);
 void op_rotl(stack_t **stack, unsigned int number);
 void op_rotr(stack_t **stack, unsigned int number);
+void op_stack(stack_t **stack, unsigned int number);
+void op_queue(stack_t **stack, unsigned int number);
+void reverse_stack(stack_t **stack);
 void free_all(void);
 
 #endif

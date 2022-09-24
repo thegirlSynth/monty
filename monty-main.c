@@ -6,6 +6,7 @@ stack_t *top_stack = NULL;
 char *buffer;
 char **args = NULL;
 FILE *filedes;
+int mode = 1;
 
 /**
  * main - this is the entry point of the monty intepreter.
