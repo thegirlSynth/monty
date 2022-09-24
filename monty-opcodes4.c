@@ -3,8 +3,7 @@
 int mode;
 
 /**
- * stack_an_queue - changes the data format from LIFO to FIFO, and vice versa
- *	essentially reverses the stack
+ * op_stack - Sets the data format from FIFO to LIFO
  * @stack: a doubly linked list
  * @number: the line number
  */
@@ -16,7 +15,11 @@ void op_stack(stack_t **stack, unsigned int number)
 	mode = 1;
 }
 
-
+/**
+ * op_queue - Sets the data format from LIFO to FIFO
+ * @stack: a doubly linked list
+ * @number: the line number
+ */
 
 void op_queue(stack_t **stack, unsigned int number)
 {
