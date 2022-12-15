@@ -93,6 +93,13 @@ Outputs are printed on `stdout` and error messages are printed on `stderr`.
   * Usage: `swap`
   * If the stack contains less than two elements, the error message `L<line_number>: can't swap, stack too short` is printed, followed by a new line, and the program exits with the status `EXIT_FAILURE`
 
+* `add` - The opcode add adds the top two elements of the stack.
+  * Usage: `add`
+  * If the stack contains less than two elements, the error message `L<line_number>: can't add, stack too short`  is printed followed by a new line, and the program exits with the status `EXIT_FAILURE`.
+  * The result is stored in the second top element of the stack, and the top element is removed, so that at the end:
+    * The top element of the stack contains the result
+    * The stack is one element shorter
+
 ### Example Outputs:
 ```
 thegirlsynth:/monty# cat -e bytecodes/00.m
